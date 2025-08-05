@@ -1,14 +1,14 @@
 import React from "react";
-import ReactDOM from "react-dom/client";
+import S3Manager from "./components/S3Manager";
 
-import "./index.css";
+console.log("ENV REGION:", process.env.REACT_APP_S3_REGION);
+console.log("ENV BUCKET:", process.env.REACT_APP_S3_BUCKET);
 
 const App = () => (
-  <div className="mt-10 text-3xl mx-auto max-w-6xl">
-    <div>Name: react-s3-experiment</div>
-    <div>Framework: react-18</div>
-  </div>
+    <div className="p-6">
+        <h1 className="text-2xl font-bold mb-4">🧺 S3 파일 관리</h1>
+        <S3Manager />
+    </div>
 );
 
-const root = ReactDOM.createRoot(document.getElementById("app") as HTMLElement);
-root.render(<App />);
+export default App;

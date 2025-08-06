@@ -253,3 +253,5 @@ sketch
 # exclude sensitive file
 *.pem
 
+# exclude dist
+dist

@@ -1,9 +1,11 @@
 import * as path from "node:path";
 import { defineConfig } from "@rspack/cli";
-import { rspack } from "@rspack/core";
+import {DefinePlugin, rspack} from "@rspack/core";
 import * as RefreshPlugin from "@rspack/plugin-react-refresh";
 import { ModuleFederationPlugin } from "@module-federation/enhanced/rspack";
 
+import * as dotenv from "dotenv";
+dotenv.config();
 
 import { mfConfig } from "./module-federation.config";
 
@@ -15,7 +17,7 @@ const targets = ["chrome >= 87", "edge >= 88", "firefox >= 78", "safari >= 14"];
 export default defineConfig({
   context: __dirname,
   entry: {
-    main: "./src/index.ts",
+    main: "./src/index.tsx",
   },
   resolve: {
     extensions: ["...", ".ts", ".tsx", ".jsx"],
@@ -77,6 +79,13 @@ export default defineConfig({
   plugins: [
     new rspack.HtmlRspackPlugin({
       template: "./index.html",
+    }),
+    new DefinePlugin({
+      "process.env.REACT_APP_S3_REGION": JSON.stringify(process.env.REACT_APP_S3_REGION),
+      "process.env.REACT_APP_S3_BUCKET": JSON.stringify(process.env.REACT_APP_S3_BUCKET),
+      "process.env.REACT_APP_S3_ACCESS_KEY": JSON.stringify(process.env.REACT_APP_S3_ACCESS_KEY),
+      "process.env.REACT_APP_S3_SECRET_KEY": JSON.stringify(process.env.REACT_APP_S3_SECRET_KEY),
+      "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV),
     }),
     new ModuleFederationPlugin(mfConfig),
     isDev ? new RefreshPlugin() : null,

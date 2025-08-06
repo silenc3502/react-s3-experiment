@@ -2,7 +2,7 @@
   "name": "react-s3-experiment",
   "version": "0.0.1",
   "scripts": {
-    "build": "NODE_ENV=production rspack build",
+    "build": "cross-env NODE_ENV=production rspack build",
     "build:dev": "NODE_ENV=development rspack build",
     "build:start": "cd dist && rspack serve",
     "start": "cross-env NODE_ENV=development rspack serve"
@@ -24,8 +24,10 @@
     "typescript": "^5.7.3"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.859.0",
     "@module-federation/enhanced": "^0.8.9",
     "cross-env": "^10.0.0",
+    "dotenv": "^17.2.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   }

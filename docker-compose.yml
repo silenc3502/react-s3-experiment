@@ -1,0 +1,10 @@
+version: "3"
+
+services:
+  react-s3-experiment:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:80"
+    container_name: react-s3-experiment-container

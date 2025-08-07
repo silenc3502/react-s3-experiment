@@ -32,7 +32,7 @@ export default defineConfig({
     // You need to set a unique value that is not equal to other applications
     uniqueName: "react_s3_experiment",
     // publicPath must be configured if using manifest
-    publicPath: "http://localhost:3000/",
+    publicPath: `${process.env.REACT_S3_SERVICE}`,
   },
 
   experiments: {

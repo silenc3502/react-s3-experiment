@@ -1,10 +1,9 @@
-version: "3"
+version: "3.8"
 
 services:
   react-s3-experiment:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    ports:
-      - "3000:80"
+    image: ghcr.io/${GITHB_ACTOR}/react-s3-experiment:latest
     container_name: react-s3-experiment-container
+    ports:
+      - "7000:80"
+    restart: always
